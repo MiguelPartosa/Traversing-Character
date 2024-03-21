@@ -1,1 +1,3 @@
-res://level.tscn
+res://Nodes/player.tscn
+res://Nodes/level.tscn
+res://Scripts/player.gd

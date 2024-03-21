@@ -1,4 +1,8 @@
+AnimationTree
+MeshInstance3D
+Node
 Node3D
+SpringArm3D
+Camera3D
 CollisionShape3D
 CharacterBody3D
-MeshInstance3D
