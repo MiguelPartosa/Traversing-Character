@@ -15,8 +15,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animTree = $AnimationTree
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(2)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -24,18 +23,29 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		springArmPivot.rotate_y(-event.relative.x*mouseSens)
-		springArm.rotate_x(-event.relative.y*mouseSens * 0.3)
+		springArm.rotate_x(deg_to_rad(-event.relative.y*mouseSens * 90))
 		springArm.rotation.x = clamp(springArm.rotation.x, -PI/4,0.45)
 		
-		
+
+func _process(delta: float) -> void:
+	var leap:float = 0
+	pass
+
 func _physics_process(delta: float) -> void:
+	#get distance from ground
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	
+	
+		
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -53,7 +63,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x,0 * SPEED,lerpVal)
 		velocity.z = lerp(velocity.z,0 * SPEED,lerpVal)
 	
-	animTree.set("parameters/BlendSpace1D/blend_position", velocity.length()/SPEED)
+	# only x and z run speed to affect walk animation 
+	var runSpeed = (velocity* Vector3(1,0,1)).length() 
+	
+	animTree.set("parameters/BlendSpace1D/blend_position", runSpeed/SPEED)
+	animTree.set
 	
 	move_and_slide()
 

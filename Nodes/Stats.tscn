@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfq217prnm7hy"]
+
+[ext_resource type="Script" path="res://Scripts/FPS.gd" id="1_17mr8"]
+
+[node name="Stats" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS: "
+script = ExtResource("1_17mr8")

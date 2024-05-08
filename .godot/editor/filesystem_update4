@@ -1,3 +1,5 @@
 res://Nodes/player.tscn
-res://Nodes/level.tscn
 res://Scripts/player.gd
+res://Nodes/level.tscn
+res://Nodes/Stats.tscn
+res://Scripts/FPS.gd
